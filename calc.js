@@ -1,10 +1,6 @@
 
 
 
-var history = document.getElementById('history-value');
-var output = document.getElementById('output-value');
-
-
 
 
 function getHistory() {
@@ -15,7 +11,7 @@ function printHistory(num) {
    
 }
 function getOutput() {
-    return output.innerText;
+    return document.getElementById('output-value').innerText;
 }
 function printOutput(num) {
     if (num.length > 13) {
@@ -23,7 +19,9 @@ function printOutput(num) {
     }
     if(num == ""){
     document.getElementById('output-value').innerText = num;
-    } else{
+    } else if (num == 0) {
+        
+    }else{
     document.getElementById('output-value').innerText = getFormattedNumber(num)
     }
 }
@@ -74,7 +72,7 @@ for(var i = 0; i < operator.length; i++){
                     var result = eval(history);
                     // console.log(result)
                     if(result > 9999999999999){
-                        result = Error
+                        result = ""
                     } else {
                     printOutput(result);
                     printHistory("");
@@ -91,7 +89,7 @@ for(var i = 0; i < operator.length; i++){
 }
 var numbers = document.getElementsByClassName('number');
 // console.log(operator[1].id);
-for(var i = 0; i < operator.length; i++){
+for(var i = 0; i < numbers.length; i++){
     numbers[i].addEventListener('click', function(){
         // alert(`The operator clicked: ${this.id}`)
         var output = reverseNumberFormat(getOutput(numbers[i]));
